@@ -11,9 +11,9 @@ GRID_WIDTH = 99
 GRID_HEIGHT = 99
 
 # Screen Info
-SCREEN_WIDTH = 1000      # Pixels
-SCREEN_HEIGHT = 1000     # Pixels
-CYCLE_DELAY = 1000      # Delay in milliseconds
+SCREEN_WIDTH = 640          # Pixels
+SCREEN_HEIGHT = 480         # Pixels
+CYCLE_DELAY = 1000          # Delay in milliseconds
 
 # draw.py
 BOX_WIDTH_SCREEN = SCREEN_WIDTH / GRID_WIDTH
@@ -30,9 +30,9 @@ NUM_DAYS_WO_WATER = 3
 NUM_DAYS_WO_FOOD = 14
 
 # Environment Initial, total can't add up to more than GRID_WIDTH * GRID_HEIGHT - NUM_PLAYERS
-E_NUM_REG_TREES = 20
-E_NUM_FRUIT_TREES = 10
-E_NUM_WATER_SPOTS = 20
+E_NUM_REG_TREES = 5
+E_NUM_APPLE_TREES = 1
+E_NUM_WATER_SPOTS = 1
 
 # Player Initial Stats
 P_HEALTH = 100

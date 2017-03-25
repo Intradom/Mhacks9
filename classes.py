@@ -32,6 +32,10 @@ class Player(LivingThings):
         self.sobriety = s
         self.bladder = b
         self.dump = d
+        
+        self.last_thought = ""
+        self.current_action = ""
+        self.action_counter = 0
 
 class Animal(LivingThings):
 
