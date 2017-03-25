@@ -51,19 +51,19 @@ P_DUMP = 1
 
 # Time to perform actions
 ACTION_TIME = {}
-ACTION_TIME[walk_U] = 1
-ACTION_TIME[walk_D] = 1
-ACTION_TIME[walk_L] = 1
-ACTION_TIME[walk_R] = 1
+ACTION_TIME["walk_U"] = 1
+ACTION_TIME["walk_D"] = 1
+ACTION_TIME["walk_L"] = 1
+ACTION_TIME["walk_R"] = 1
 
-ACTION_TIME[eat] = 3
-ACTION_TIME[drink] = 3
-ACTION_TIME[sleep] = 25
+ACTION_TIME["eat"] = 3
+ACTION_TIME["drink"] = 3
+ACTION_TIME["sleep"] = 25
 
 # Action threshold
 HUNGER_THRESHOLD = 60
 THIRST_THRESHOLD = 60
-ENERGY_THRESHOLD = 80 
+ENERGY_THRESHOLD = 20 
 
 
 
