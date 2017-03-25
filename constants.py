@@ -60,6 +60,10 @@ ACTION_TIME[eat] = 3
 ACTION_TIME[drink] = 3
 ACTION_TIME[sleep] = 25
 
+# Action threshold
+HUNGER_THRESHOLD = 60
+THIRST_THRESHOLD = 60
+ENERGY_THRESHOLD = 80 
 
 
 
