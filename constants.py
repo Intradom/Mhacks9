@@ -10,8 +10,8 @@ C_APPLE = (204, 0, 0)
 C_PLAYER = (102, 0, 204)
 
 # Grid Info
-GRID_WIDTH = 9
-GRID_HEIGHT = 9
+GRID_WIDTH = 10
+GRID_HEIGHT = 10
 
 # Screen Info
 SCREEN_WIDTH = 640          # Pixels
@@ -36,9 +36,9 @@ NUM_DAYS_WO_WATER = 3
 NUM_DAYS_WO_FOOD = 14
 
 # Environment Initial, total can't add up to more than GRID_WIDTH * GRID_HEIGHT - NUM_PLAYERS
-E_NUM_REG_TREES = 5
-E_NUM_APPLE_TREES = 1
-E_NUM_WATER_SPOTS = 1
+E_NUM_REG_TREES = 20
+E_NUM_APPLE_TREES = 10
+E_NUM_WATER_SPOTS = 10
 
 # Player Initial Stats
 P_HEALTH = 100

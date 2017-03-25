@@ -59,7 +59,6 @@ def draw_tree(screen, (x_coordinate_grid, y_coordinate_grid), apple):
         pygame.draw.circle(screen, constants.C_APPLE, apple_2, radius, 0)
         pygame.draw.circle(screen, constants.C_APPLE, apple_3, radius, 0)
 
-
 def draw_water(screen, (x_coordinate_grid, y_coordinate_grid)):
 
     coordinate_screen = grid_to_screen((x_coordinate_grid, y_coordinate_grid))
@@ -69,53 +68,39 @@ def draw_water(screen, (x_coordinate_grid, y_coordinate_grid)):
 
     pygame.draw.rect(screen, constants.C_DARK_BLUE, tuple(Rect), 0)
 
-
 def draw_player(screen, (x_coordinate_grid, y_coordinate_grid)):
     # convert grid coordinates to screen coordinates
     coordinate_screen = grid_to_screen((x_coordinate_grid, y_coordinate_grid))
 
     player = (coordinate_screen[0] + constants.HALF_BOX_WIDTH_SCREEN,
-              constants.HALF_BOX_HEIGHT_SCREEN)
+              coordinate_screen[1] + constants.HALF_BOX_HEIGHT_SCREEN)
 
     pygame.draw.circle(screen, constants.C_PLAYER, player,
                        constants.HALF_BOX_HEIGHT_SCREEN, 0)
 
-
-
-def draw_environment(screen, x):
-    # circle(Surface, color, pos, radius, width=0)
-    #pygame.draw.circle(screen, constants.C_BLACK, (x, constants.SCREEN_HEIGHT / 2), 100, 1)
-
-    draw_water(screen, (0, 0))
-    draw_water(screen, (0, 1))
-    draw_water(screen, (1, 0))
-    draw_water(screen, (1, 1))
-    draw_tree(screen, (2, 0), False)
-    draw_tree(screen, (2, 1), False)
-    draw_tree(screen, (2, 2), True)
-    draw_tree(screen, (0, 2), False)
-    draw_tree(screen, (1, 2), False)
-    draw_player(screen, (3, 3))
-
-
-def draw_person():
-    pass
-
-
-def draw_players(screen):
-    pass
-
+def draw_environment(screen, env):
+    for i in range(len(env.global_map)):
+        for j in range(len(env.global_map[0])):
+            name = env.global_map[i][j].name
+            x = env.global_map[i][j].x_coordinate
+            y = env.global_map[i][j].y_coordinate
+            if name == "reg_tree":
+                draw_tree(screen, (x, y), False)
+            elif name == "apple_tree":
+                draw_tree(screen, (x, y), True)
+            elif name == "water":
+                draw_water(screen, (x, y))
+            elif name != "grass":
+                draw_player(screen, (x, y))
 
 def draw_tools(screen):
     pass
 
-
-def process_draws(screen, x):
+def process_draws(screen, env):
     # Clear screen
     screen.fill(constants.C_MEADOW_GREEN)
 
-    draw_environment(screen, x)
-    draw_players(screen)
+    draw_environment(screen, env)
     draw_tools(screen)
 
     pygame.display.update()

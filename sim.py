@@ -86,7 +86,7 @@ def main(args=None):
         reaction.process_reactions(player)
         
         # Draw all out the environment, players, and tools aquired
-        draw.process_draws(screen, cycles)
+        draw.process_draws(screen, env)
 
         cycles += 1 # TODO: Add check for when cycles overflows 
         pygame.time.delay(constants.CYCLE_DELAY)
