@@ -90,20 +90,26 @@ def draw_player(screen, (x_coordinate_grid, y_coordinate_grid)):
                        constants.HALF_BOX_HEIGHT_SCREEN, 0)
 
 
-def draw_environment(screen, env):
-    for i in range(len(env.global_map)):
-        for j in range(len(env.global_map[0])):
-            name = env.global_map[i][j].name
-            x = env.global_map[i][j].x_coordinate
-            y = env.global_map[i][j].y_coordinate
+def draw_environment(screen, environment):
+    # iterate through whole map
+    for i in range(len(environment.global_map)):
+        for j in range(len(environment.global_map[0])):
+            name = environment.global_map[i][j].name
+            x_coordinate_grid = environment.global_map[i][j].x_coordinate
+            y_coordinate_grid = environment.global_map[i][j].y_coordinate
+
             if name == "reg_tree":
-                draw_tree(screen, (x, y), False)
+                draw_tree(screen, (x_coordinate_grid, y_coordinate_grid),
+                          False)
             elif name == "apple_tree":
-                draw_tree(screen, (x, y), True)
+                draw_tree(screen, (x_coordinate_grid, y_coordinate_grid), True)
             elif name == "water":
-                draw_water(screen, (x, y))
+                draw_water(screen, (x_coordinate_grid, y_coordinate_grid))
             elif name != "grass":
-                draw_player(screen, (x, y))
+                draw_player(screen, (x_coordinate_grid, y_coordinate_grid))
+            else:
+                # throw exception
+                pass
 
 
 def draw_tools(screen):
