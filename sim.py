@@ -24,6 +24,7 @@ def init():
     
     # Environment init
     env = classes.Environment()
+    print(env)
     
     # TODO: add in more players
     # Players init

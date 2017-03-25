@@ -1,9 +1,11 @@
+import sys
+
 import constants
 
 class Thing(object):
 
     def __init__(self, n, x, y):
-        self.name = x
+        self.name = n
         self.x_coordinate = x
         self.y_coordinate = y
 
@@ -45,6 +47,19 @@ class Environment(object):
         self.uses = []
         self.weather = "normal"
         self.day = 1
+        
+        # Initialize environment to be all grass tiles
+        for i in range(constants.GRID_WIDTH):
+            for j in range(constants.GRID_HEIGHT):
+                self.global_map[i][j] = Thing("grass", i, j)
+                
+    def __str__(self):
+        print("**********GRID**********\n")
+        for i in range(constants.GRID_WIDTH):
+                for j in range(constants.GRID_HEIGHT):
+                    sys.stdout.write(self.global_map[i][j].name + " ")
+                print("\n")
+        return "**********GRID**********"
         
     def change_tile(self, x, y, new_name):
         self.global_map[x][y] = Thing(new_name, x, y)
