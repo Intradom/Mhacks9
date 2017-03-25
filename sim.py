@@ -58,6 +58,7 @@ def init():
     env.change_tile(player.x_coordinate, player.y_coordinate, player.name)                             
 
     print(env)
+    print(player)
            
     return screen, env, player
 
@@ -76,13 +77,13 @@ def main(args=None):
         environment.process_environment()
         
         # Based on previous thoughts, mental states, and the new environment; generate actions plan
-        thought.process_thoughts()
+        #thought.process_thoughts()
         
         # Based on action plan, execute actions plan
-        action.process_actions()
+        action.process_actions(player, env)
         
         # Based on action plan, update how psychological state changes
-        reaction.process_reactions()
+        reaction.process_reactions(player)
         
         # Draw all out the environment, players, and tools aquired
         draw.process_draws(screen, cycles)
