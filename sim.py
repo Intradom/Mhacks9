@@ -79,7 +79,7 @@ def main(args=None):
         thought.process_thoughts()
         
         # Based on action plan, execute actions plan
-        action.process_actions()
+        action.process_actions(player, env)
         
         # Based on action plan, update how psychological state changes
         reaction.process_reactions()
