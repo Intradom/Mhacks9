@@ -9,6 +9,10 @@ SCREEN_WIDTH = 640      # Pixels
 SCREEN_HEIGHT = 480     # Pixels
 CYCLE_DELAY = 1000      # Delay in milliseconds
 
+# Grid Info
+GRID_WIDTH = 100
+GRID_HEIGHT = 100
+
 # Player Initial Stats
 HUNGER = 1
 THIRST = 1
