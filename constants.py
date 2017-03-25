@@ -5,9 +5,9 @@ C_WHITE = (255, 255, 255)
 C_BLACK = (0, 0, 0)
 
 # Screen Info
-SCREEN_WIDTH = 640      # Pixels
-SCREEN_HEIGHT = 480     # Pixels
-CYCLE_DELAY = 1000      # Delay in milliseconds
+SCREEN_WIDTH = 640.0        # Pixels
+SCREEN_HEIGHT = 480.0       # Pixels
+CYCLE_DELAY = 1000          # Delay in milliseconds
 
 # Grid Info
 GRID_WIDTH = 10
