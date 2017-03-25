@@ -22,9 +22,9 @@ NUM_DAYS_WO_WATER = 3
 NUM_DAYS_WO_FOOD = 14
 
 # Environment Initial, total can't add up to more than GRID_WIDTH * GRID_HEIGHT - NUM_PLAYERS
-E_NUM_REG_TREES = 20
-E_NUM_FRUIT_TREES = 10
-E_NUM_WATER_SPOTS = 20
+E_NUM_REG_TREES = 5
+E_NUM_APPLE_TREES = 1
+E_NUM_WATER_SPOTS = 1
 
 # Player Initial Stats
 P_HEALTH = 100
