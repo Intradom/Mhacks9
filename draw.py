@@ -6,10 +6,10 @@ import pygame
 # MODIFIES: screen
 # EFFECTS:  converts a grid coordinate to a screen coordinate
 def grid_to_screen((x_coordinate_grid, y_coordinate_grid)):
-    x_coordinate_screen = (x_coordinate_grid / constants.GRID_WIDTH) * \
-        constants.SCREEN_WIDTH
-    y_coordinate_screen = (y_coordinate_grid / constants.GRID_HEIGHT) * \
-        constants.SCREEN_HEIGHT
+    x_coordinate_screen = (constants.BOX_WIDTH_SCREEN * x_coordinate_grid) - \
+        constants.HALF_BOX_WIDTH_SCREEN
+    y_coordinate_screen = (constants.BOX_HEIGHT_SCREEN) * y_coordinate_grid - \
+        constants.HALF_BOX_HEIGHT_SCREEN
     return (x_coordinate_screen, y_coordinate_screen)
 
 
@@ -18,27 +18,24 @@ def grid_to_screen((x_coordinate_grid, y_coordinate_grid)):
 # EFFECTS:  draws a tree at (x_coordinate_grid, y_coordinate_grid)
 def draw_tree(screen, (x_coordinate_grid, y_coordinate_grid)):
 
-    box_width = constants.SCREEN_WIDTH / constants.GRID_WIDTH
-    box_height = constants.SCREEN_HEIGHT / constants.GRID_HEIGHT
+    # convert grid coordinates to screen coordinates
+    coordinate_screen = grid_to_screen((x_coordinate_grid, y_coordinate_grid))
 
-    half_box_width = box_width / 2
-    half_box_height = box_height / 2
-
-    top_coordinate_grid = (x_coordinate_grid, y_coordinate_grid -
-                           half_box_height)
-    left_coordinate_grid = (x_coordinate_grid - half_box_width,
-                            y_coordinate_grid + half_box_height)
-    right_coordinate_grid = (x_coordinate_grid + half_box_width,
-                             y_coordinate_grid + half_box_height)
-
-    top_coordinate_screen = grid_to_screen(top_coordinate_grid)
-    left_coordinate_screen = grid_to_screen(left_coordinate_grid)
-    right_coordinate_screen = grid_to_screen(right_coordinate_grid)
+    # calculate coordinates for triangle
+    top_coordinate_screen = (coordinate_screen[0], coordinate_screen[1] -
+                             constants.HALF_BOX_HEIGHT_SCREEN)
+    left_coordinate_screen = (coordinate_screen[0] -
+                              constants.HALF_BOX_WIDTH_SCREEN,
+                              coordinate_screen[1] +
+                              constants.HALF_BOX_HEIGHT_SCREEN)
+    right_coordinate_screen = (coordinate_screen[0] +
+                               constants.HALF_BOX_WIDTH_SCREEN,
+                               coordinate_screen[1] +
+                               constants.HALF_BOX_HEIGHT_SCREEN)
 
     # pygame.draw.polygon(Surface, color, pointlist, width=0)
     pygame.draw.polygon(screen, constants.C_DARK_GREEN, (top_coordinate_screen,
-                        left_coordinate_screen, right_coordinate_screen),
-                        width=0)
+                        left_coordinate_screen, right_coordinate_screen), 0)
 
 
 def draw_water():
