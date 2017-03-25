@@ -8,6 +8,9 @@ class Thing(object):
         self.name = n
         self.x_coordinate = x
         self.y_coordinate = y
+        
+        def __str__(self):
+            return self.name + " " + self.x_coordinate + " " + self.y_coordinate
 
 class LivingThings(Thing):
 
@@ -36,6 +39,35 @@ class Player(LivingThings):
         self.last_thought = ""
         self.current_action = ""
         self.action_counter = 0
+        
+    def __str__(self):
+        print("**********Player**********")
+        print("Name: " + str(self.name))
+        print("X: " + str(self.x_coordinate))
+        print("Y: " + str(self.y_coordinate))
+        print("Health: " + str(self.health))
+        print("Hunger: " + str(self.hunger))
+        print("Thirst: " + str(self.thirst))
+        print("Energy: " + str(self.energy))
+        print("Fitness: " + str(self.fitness))
+        print("Anger: " + str(self.anger))
+        print("Fear: " + str(self.fear))
+        print("Grief: " + str(self.grief))
+        print("Joy: " + str(self.joy))
+        print("Intelligence: " + str(self.intelligence))
+        print("Sobriety: " + str(self.sobriety))
+        print("Bladder: " + str(self.bladder))
+        print("Dump: " + str(self.dump))
+        print("Last thought: " + self.last_thought)
+        print("Current action: " + self.current_action)
+        print("Action counter: " + str(self.action_counter))
+        print("Cognitive Map: ")
+        if len(self.cognitive_map) == 0:
+            print("\tCognitive map empty")
+        else:
+            for i in range(len(self.cognitive_map)):
+                print("\t" + cognitive_map[i])
+        return "**********Player**********"
 
 class Animal(LivingThings):
 
@@ -59,9 +91,9 @@ class Environment(object):
                 
     def __str__(self):
         print("**********GRID**********\n")
-        for i in range(constants.GRID_WIDTH):
-                for j in range(constants.GRID_HEIGHT):
-                    sys.stdout.write(self.global_map[i][j].name + " ")
+        for row in range(constants.GRID_HEIGHT):
+                for col in range(constants.GRID_WIDTH):
+                    sys.stdout.write(self.global_map[col][row].name + " ")
                 print("\n")
         return "**********GRID**********"
         
