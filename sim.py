@@ -77,7 +77,7 @@ def main(args=None):
         environment.process_environment()
         
         # Based on previous thoughts, mental states, and the new environment; generate actions plan
-        thought.process_thoughts()
+        #thought.process_thoughts()
         
         # Based on action plan, execute actions plan
         action.process_actions(player, env)
