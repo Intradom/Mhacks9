@@ -3,6 +3,8 @@
 # Colors
 C_WHITE = (255, 255, 255)
 C_BLACK = (0, 0, 0)
+C_DARK_GREEN = (0, 102, 0)
+C_DARK_BLUE = (0, 0, 153)
 
 # Screen Info
 SCREEN_WIDTH = 640          # Pixels
