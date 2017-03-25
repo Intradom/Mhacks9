@@ -10,21 +10,33 @@ SCREEN_HEIGHT = 480     # Pixels
 CYCLE_DELAY = 1000      # Delay in milliseconds
 
 # Grid Info
-GRID_WIDTH = 100
-GRID_HEIGHT = 100
+GRID_WIDTH = 10
+GRID_HEIGHT = 10
+
+# Day Info
+CYCLES_IN_DAY = 1000
+
+# Player Info, stats defined below
+NUM_PLAYERS = 1
+NUM_DAYS_WO_WATER = 3
+NUM_DAYS_WO_FOOD = 14
+
+# Environment Initial, total can't add up to more than GRID_WIDTH * GRID_HEIGHT - NUM_PLAYERS
+E_NUM_REG_TREES = 20
+E_NUM_FRUIT_TREES = 10
+E_NUM_WATER_SPOTS = 20
 
 # Player Initial Stats
-HUNGER = 1
-THIRST = 1
-ENERGY = 100
-FITNESS = 50 
-ANGER = 50
-FEAR = 50
-GRIEF = 50
-JOY = 50
-INTELLIGENCE = 50
-SOBRIETY = 100
-BLADDER = 1
-DUMP = 1
-
-# Thing Initial
+P_HEALTH = 100
+P_HUNGER = 1
+P_THIRST = 1
+P_ENERGY = 100
+P_FITNESS = 50 
+P_ANGER = 50
+P_FEAR = 50
+P_GRIEF = 50
+P_JOY = 50
+P_INTELLIGENCE = 50
+P_SOBRIETY = 100
+P_BLADDER = 1
+P_DUMP = 1 
