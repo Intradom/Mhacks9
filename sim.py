@@ -40,13 +40,14 @@ def init():
                 loc_x = random.randint(0, constants.GRID_WIDTH - 1)
                 loc_y = random.randint(0, constants.GRID_HEIGHT - 1)
             env.change_tile(loc_x, loc_y, e_name)
-            
-    print(env)
-    
+                
     # TODO: add in more players
     # Players init
     p_x = random.randint(0, constants.GRID_WIDTH - 1)
     p_y = random.randint(0, constants.GRID_HEIGHT - 1)
+    while env.global_map[p_x][p_y].name != "grass": # Keep searching for open tiles
+        p_x = random.randint(0, constants.GRID_WIDTH - 1)
+        p_y = random.randint(0, constants.GRID_HEIGHT - 1)
     player = classes.Player(p_name, p_x, p_y, \
                             constants.P_HEALTH, constants.P_HUNGER, constants.P_THIRST, \
                             constants.P_ENERGY, constants.P_FITNESS, constants.P_ANGER, \
@@ -54,6 +55,10 @@ def init():
                             constants.P_INTELLIGENCE, constants.P_SOBRIETY, constants.P_BLADDER, \
                             constants.P_DUMP)
                                     
+    env.change_tile(player.x_coordinate, player.y_coordinate, player.name)                             
+
+    print(env)
+           
     return screen, env, player
 
 def main(args=None):
