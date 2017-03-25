@@ -12,9 +12,12 @@ import draw
 def init():
     pygame.init()
     screen = pygame.display.set_mode((constants.SCREEN_WIDTH, constants.SCREEN_HEIGHT))
+    
+    return screen
 
 def main(args=None):
-    init()
+    screen = init()
+    x_test = 0
     while True:
         # Check if user pressed the close button on pygame
         for event in pygame.event.get():
@@ -36,7 +39,8 @@ def main(args=None):
         reaction.process_reactions()
         
         # Draw all out the environment, players, and tools aquired
-        draw.process_draws()
+        draw.process_draws(screen, x_test)
+        x_test += 10
         
         pygame.time.delay(constants.CYCLE_DELAY)
 
