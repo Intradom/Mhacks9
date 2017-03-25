@@ -58,6 +58,7 @@ def init():
     env.change_tile(player.x_coordinate, player.y_coordinate, player.name)                             
 
     print(env)
+    print(player)
            
     return screen, env, player
 
