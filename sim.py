@@ -83,7 +83,7 @@ def main(args=None):
         action.process_actions(player, env)
         
         # Based on action plan, update how psychological state changes
-        reaction.process_reactions()
+        reaction.process_reactions(player)
         
         # Draw all out the environment, players, and tools aquired
         draw.process_draws(screen, cycles)
