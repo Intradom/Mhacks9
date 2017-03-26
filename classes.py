@@ -98,12 +98,12 @@ class Environment(object):
 
     def __str__(self):
         print("**********GRID**********\n")
-        for y in range(constants.GRID_HEIGHT):
-            for x in range(constants.GRID_WIDTH):
-                sys.stdout.write(self.global_map[y][x].name + " ")
+        for i in range(constants.GRID_HEIGHT):
+            for j in range(constants.GRID_WIDTH):
+                sys.stdout.write(self.global_map[i][j].name + " ")
                 print("\n")
         return "**********GRID**********"
 
     def change_tile(self, name_in, resources_in, x_in, y_in):
-        self.global_map[x_in][y_in] = Thing(name_in, x_in, y_in, resources_in)
+        self.global_map[x_in][y_in] = Thing(name_in, resources_in, x_in, y_in)
 ###############################################################################
