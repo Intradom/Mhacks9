@@ -91,15 +91,19 @@ def process_thoughts(player, environment):
         # 		player.current_action = "eat"
         # 		return
         player.current_action = search_obj(player, environment, fov, "apple_tree", "eat")
+        print("Want to eat")
     elif player.thirst > constants.THIRST_THRESHOLD:
         #for invIndex in player.inventory:
         #	if player.inventory[invIndex] is edible:
         #		#player.current_action = "eat"
         player.current_action = search_obj(player, environment, fov, "water", "drink")
+        print("Want to drink")
     elif player.energy < constants.ENERGY_THRESHOLD: 
         player.current_action = "sleep"
+        print("Want to sleep")
     else: # Expore the world
-        player.current_action = random_walk(player, environment, ["walk_R", "walk_U", "walk_D"])
+        player.current_action = random_walk(player, environment, ["walk_L", "walk_R", "walk_U", "walk_D"])
+        print("Want to explore")
 
     #skip if current thought count hasn't reached max
 
