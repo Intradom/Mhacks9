@@ -2,6 +2,8 @@ import constants
 import pygame
 
 
+# helper functions
+###############################################################################
 # REQUIRES: x_coordinate_grid, y_coordinate_grid are valid grid coordinates
 # MODIFIES: screen
 # EFFECTS:  converts a grid coordinate to a screen coordinate
@@ -10,6 +12,24 @@ def grid_to_screen((x_coordinate_grid, y_coordinate_grid)):
     x_coordinate_screen = constants.BOX_WIDTH_SCREEN * x_coordinate_grid
     y_coordinate_screen = constants.BOX_HEIGHT_SCREEN * y_coordinate_grid
     return (x_coordinate_screen, y_coordinate_screen)
+###############################################################################
+
+
+# lower level drawing
+###############################################################################
+# REQUIRES: x_coordinate_grid, y_coordinate grid are valid grid coordinates
+# MODIFIES: screen
+def draw_player(screen, (x_coordinate_grid, y_coordinate_grid)):
+    # convert grid coordinates to screen coordinates
+    coordinate_screen = grid_to_screen((x_coordinate_grid, y_coordinate_grid))
+
+    # (x, y)
+    player_position = (coordinate_screen[0] + constants.HALF_BOX_WIDTH_SCREEN,
+                       coordinate_screen[1] + constants.HALF_BOX_HEIGHT_SCREEN)
+
+    # pygame.draw.circle(screen, color, (x,y), radius, thickness)
+    pygame.draw.circle(screen, constants.C_PLAYER, player_position,
+                       constants.HALF_BOX_HEIGHT_SCREEN, 0)
 
 
 # REQUIRES: x_coordinate_grid, y_coordinate grid are valid grid coordinates
@@ -73,23 +93,11 @@ def draw_water(screen, (x_coordinate_grid, y_coordinate_grid)):
 
     # pygame.draw.rect(screen, color, (x,y,width,height), thickness)
     pygame.draw.rect(screen, constants.C_WATER, size, 0)
+###############################################################################
 
 
-# REQUIRES: x_coordinate_grid, y_coordinate grid are valid grid coordinates
-# MODIFIES: screen
-def draw_player(screen, (x_coordinate_grid, y_coordinate_grid)):
-    # convert grid coordinates to screen coordinates
-    coordinate_screen = grid_to_screen((x_coordinate_grid, y_coordinate_grid))
-
-    # (x, y)
-    player_position = (coordinate_screen[0] + constants.HALF_BOX_WIDTH_SCREEN,
-                       coordinate_screen[1] + constants.HALF_BOX_HEIGHT_SCREEN)
-
-    # pygame.draw.circle(screen, color, (x,y), radius, thickness)
-    pygame.draw.circle(screen, constants.C_PLAYER, player_position,
-                       constants.HALF_BOX_HEIGHT_SCREEN, 0)
-
-
+# higher level drawing
+###############################################################################
 def draw_environment(screen, environment):
     # iterate through whole map
     for i in range(len(environment.global_map)):
@@ -114,13 +122,14 @@ def draw_environment(screen, environment):
 
 def draw_tools(screen):
     pass
+###############################################################################
 
 
-def process_draws(screen, env):
-    # Clear screen
-    screen.fill(constants.C_MEADOW_GREEN)
-
-    draw_environment(screen, env)
+# driver
+###############################################################################
+def process_draws(screen, environment):
+    screen.fill(constants.C_GRASS)
+    draw_environment(screen, environment)
     draw_tools(screen)
-
     pygame.display.update()
+###############################################################################
