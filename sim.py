@@ -56,9 +56,6 @@ def init():
                             constants.P_DUMP)
                                     
     env.change_tile(player.x_coordinate, player.y_coordinate, player.name)                             
-
-    print(env)
-    print(player)
            
     return screen, env, player
 
@@ -77,7 +74,7 @@ def main(args=None):
         environment.process_environment()
         
         # Based on previous thoughts, mental states, and the new environment; generate actions plan
-        #thought.process_thoughts()
+        thought.process_thoughts(player, env)
         
         # Based on action plan, execute actions plan
         action.process_actions(player, env)
