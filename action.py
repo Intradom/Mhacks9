@@ -11,7 +11,7 @@ import action
 import reaction
 import draw
 
-def find_food(person, environment):
+def find_food(x, y, person, environment):
     #Check left
     if person.x_coordinate != 0:
         if environment.global_map[x-1][y].name == "apple_tree":
@@ -97,7 +97,7 @@ def process_actions(person, environment):
 
     elif person.current_action == "eat":
         #Get location of food
-        food_loc = find_food(person, environment)
+        food_loc = find_food(x, y, person, environment)
         if food_loc == "left":
             environment.global_map[x-1][y].resources -= 1
         elif food_loc == "right":
