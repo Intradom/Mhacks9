@@ -88,7 +88,7 @@ class Environment(object):
         # Initialize environment to be all grass tiles
         for i in range(constants.GRID_WIDTH):
             for j in range(constants.GRID_HEIGHT):
-                self.global_map[i][j] = Thing("grass", i, j,0)
+                self.global_map[i][j] = Thing("grass", i, j, 0)
                 
     def __str__(self):
         print("**********GRID**********\n")
