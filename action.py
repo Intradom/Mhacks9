@@ -38,7 +38,7 @@ def process_actions(person, environment):
     if person.current_action == "walk_U":
 
         #Reset current location to grass
-        environment.global_map[x][y] = Thing("grass", x, y, 0)
+        environment.global_map[x][y] = classes.Thing("grass", x, y, 0)
 
         #Move up
         person.y_coordinate += 1
@@ -49,7 +49,7 @@ def process_actions(person, environment):
     elif person.current_action == "walk_D":
 
         #Reset current location to grass
-        environment.global_map[x][y] = Thing("grass", x, y, 0)
+        environment.global_map[x][y] = classes.Thing("grass", x, y, 0)
 
         #Move down
         person.y_coordinate -= 1
@@ -60,7 +60,7 @@ def process_actions(person, environment):
     elif person.current_action == "walk_L":
 
         #Reset current location to grass
-        environment.global_map[x][y] = Thing("grass", x, y, 0)
+        environment.global_map[x][y] = classes.Thing("grass", x, y, 0)
 
         #Move left
         person.x_coordinate -= 1
@@ -71,7 +71,7 @@ def process_actions(person, environment):
     elif person.current_action == "walk_R":
 
         #Reset current location to grass
-        environment.global_map[x][y] = Thing("grass", x, y, 0)
+        environment.global_map[x][y] = classes.Thing("grass", x, y, 0)
 
         #Move right
         person.x_coordinate += 1
