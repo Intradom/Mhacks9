@@ -43,8 +43,8 @@ E_NUM_WATER_SPOTS = 10
 
 # Player Initial Stats
 P_HEALTH = 100
-P_HUNGER = 1
-P_THIRST = 1
+P_HUNGER = 0
+P_THIRST = 0
 P_ENERGY = 100
 P_FITNESS = 50 
 P_ANGER = 50
@@ -53,8 +53,8 @@ P_GRIEF = 50
 P_JOY = 50
 P_INTELLIGENCE = 50
 P_SOBRIETY = 100
-P_BLADDER = 1
-P_DUMP = 1 
+P_BLADDER = 0
+P_DUMP = 0
 
 # Time to perform actions
 ACTION_TIME = {}
