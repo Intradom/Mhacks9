@@ -29,7 +29,7 @@ def process_thoughts(player, environment):
 		# 		return
 		
 		for fovIndex in range(len(fov)):
-			if fov[fovIndex].name = "apple_tree"
+			if fov[fovIndex].name == "apple_tree":
 				if fov[fovIndex].x_coordinate < player.x_coordinate - 1:
 					player.current_action = "walk_L"
 				elif fov[fovIndex].x_coordinate > player.x_coordinate + 1:
@@ -46,13 +46,13 @@ def process_thoughts(player, environment):
 
 
 
-	elif player.thirst > constants.THIRST_THRESHOLD:
-		for invIndex in player.inventory:
+	#elif player.thirst > constants.THIRST_THRESHOLD:
+		#for invIndex in player.inventory:
 			#if player.inventory[invIndex] is edible:
 				#player.current_action = "eat"
 
-	elif player.energy < ENERGY_THRESHOLD: 
-		player.current_action = "sleep"
+#	elif player.energy < ENERGY_THRESHOLD: 
+		#player.current_action = "sleep"
 
     #skip if current thought count hasn't reached max
 
