@@ -65,14 +65,13 @@ def init():
 def main(args=None):
     screen, env, player = init()
     cycles = 0
-    while True:
+    while player.health > 0:
         # Check if user pressed the close button on pygame
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.quit()
                 sys.exit()
                 
-        # TODO: Make loop that iterates these functions for each character alive
         # Updates the environment with random events and returns items to interest to the players
         environment.process_environment(env)
         
@@ -90,6 +89,9 @@ def main(args=None):
 
         cycles += 1 # TODO: Add check for when cycles overflows 
         pygame.time.delay(constants.CYCLE_DELAY)
+         
+    print(player.name + " has died")
+    pygame.quit()
 
 if __name__ == "__main__":
     main()

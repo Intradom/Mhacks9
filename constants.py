@@ -58,24 +58,33 @@ P_SOBRIETY = 100
 P_BLADDER = 0
 P_DUMP = 0
 
-# Time to perform actions
+# Time to perform actions in cycles
 ACTION_TIME = {}
-ACTION_TIME["walk_U"] = 1
-ACTION_TIME["walk_D"] = 1
-ACTION_TIME["walk_L"] = 1
-ACTION_TIME["walk_R"] = 1
+ACTION_TIME["walk_U"] = 5
+ACTION_TIME["walk_D"] = 5
+ACTION_TIME["walk_L"] = 5
+ACTION_TIME["walk_R"] = 5
+ACTION_TIME["run_U"] = 1
+ACTION_TIME["run_D"] = 1
+ACTION_TIME["run_L"] = 1
+ACTION_TIME["run_R"] = 1
 
-ACTION_TIME["eat"] = 3
-ACTION_TIME["drink"] = 3
-ACTION_TIME["sleep"] = 25
+ACTION_TIME["eat"] = 10
+ACTION_TIME["drink"] = 5
+ACTION_TIME["sleep"] = CYCLES_IN_DAY / 2
+ACTION_TIME["dance"] = 5
+ACTION_TIME["pushup"] = 20
+ACTION_TIME["pee"] = 5
+ACTION_TIME["poo"] = 10
+ACTION_TIME[""] = 5
 
-# Action threshold
+# Action threshold, outdated using probabilistic methods now
 HUNGER_THRESHOLD = 60
 THIRST_THRESHOLD = 60
 ENERGY_THRESHOLD = 20 
 
 # Field Of View Range
-FOV_RADIUS = 2
+FOV_RADIUS = 3
 
 
 

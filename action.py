@@ -40,8 +40,11 @@ def process_actions(person, environment):
     x = person.x_coordinate
     y = person.y_coordinate
 
-    if person.current_action == "walk_U" || person.current_action == "run_U":
+    if person.current_action == "walk_U" or person.current_action == "run_U":
 
+        if person.energy <= constants.ENERGY_THRESHOLD:
+            person.current_action = "walk_U"
+    
         #Reset current location to grass
         environment.global_map[x][y] = classes.Thing("grass", x, y, 0)
 
@@ -56,8 +59,11 @@ def process_actions(person, environment):
         else:
             print("\t" + person.name + " ran upwards")
 
-    elif person.current_action == "walk_D" || person.current_action == "run_D":
+    elif person.current_action == "walk_D" or person.current_action == "run_D":
 
+        if person.energy <= constants.ENERGY_THRESHOLD:
+            person.current_action = "walk_D"
+    
         #Reset current location to grass
         environment.global_map[x][y] = classes.Thing("grass", x, y, 0)
 
@@ -71,8 +77,11 @@ def process_actions(person, environment):
             print("\t" + person.name + " walked downwards")
         else:
             print("\t" + person.name + " ran downwards")
-    elif person.current_action == "walk_L" || person.current_action == "run_L":
+    elif person.current_action == "walk_L" or person.current_action == "run_L":
 
+        if person.energy <= constants.ENERGY_THRESHOLD:
+            person.current_action = "walk_L"
+    
         #Reset current location to grass
         environment.global_map[x][y] = classes.Thing("grass", x, y, 0)
 
@@ -86,8 +95,11 @@ def process_actions(person, environment):
             print("\t" + person.name + " walked to the left")
         else:
             print("\t" + person.name + " ran to the left")
-    elif person.current_action == "walk_R" || person.current_action == "run_R":
+    elif person.current_action == "walk_R" or person.current_action == "run_R":
 
+        if person.energy <= constants.ENERGY_THRESHOLD:
+            person.current_action = "walk_R"
+    
         #Reset current location to grass
         environment.global_map[x][y] = classes.Thing("grass", x, y, 0)
 
@@ -118,4 +130,23 @@ def process_actions(person, environment):
         print("\t" + person.name + " ate")
 
     elif person.current_action == "drink":
-        print("\t" + person.name + " drank")
+        print("\t" + person.name + " drank water")
+    elif person.current_action == "sleep":
+        print("\t" + person.name + " slept")
+    elif person.current_action == "dance":
+        if person.energy <= constants.ENERGY_THRESHOLD:
+            print("\t" + person.name + " is too tired to dance")
+            person.current_action = ""
+        else:
+            print("\t" + person.name + " danced")
+    elif person.current_action == "pushup":
+        if person.energy <= constants.ENERGY_THRESHOLD:
+            print("\t" + person.name + " is too tired to do push-ups")
+            person.current_action = ""
+        else:
+            print("\t" + person.name + " did push-ups")
+    elif person.current_action == "pee":
+        print("\t" + person.name + " peed on the ground")
+    elif person.current_action == "poo":
+        print("\t" + person.name + " took a dump")
+    
