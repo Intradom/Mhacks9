@@ -10,13 +10,13 @@ C_WATER = (0, 0, 153)
 C_WHITE = (255, 255, 255)
 
 # Grid Info
-GRID_WIDTH = 10
-GRID_HEIGHT = 10
+GRID_WIDTH = 25
+GRID_HEIGHT = 25
 
 # Screen Info
 SCREEN_WIDTH = 640          # Pixels
 SCREEN_HEIGHT = 480         # Pixels
-CYCLE_DELAY = 1000          # Delay in milliseconds
+CYCLE_DELAY = 100          # Delay in milliseconds
 
 # draw.py
 BOX_WIDTH_SCREEN = SCREEN_WIDTH / GRID_WIDTH
@@ -41,8 +41,8 @@ E_NUM_WATER_SPOTS = 10
 
 # Player Initial Stats
 P_HEALTH = 100
-P_HUNGER = 1
-P_THIRST = 1
+P_HUNGER = 0
+P_THIRST = 0
 P_ENERGY = 100
 P_FITNESS = 50 
 P_ANGER = 50
@@ -51,8 +51,8 @@ P_GRIEF = 50
 P_JOY = 50
 P_INTELLIGENCE = 50
 P_SOBRIETY = 100
-P_BLADDER = 1
-P_DUMP = 1 
+P_BLADDER = 0
+P_DUMP = 0
 
 # Time to perform actions
 ACTION_TIME = {}

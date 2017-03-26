@@ -12,6 +12,11 @@ import reaction
 import draw
 
 def process_reactions(person):
+    if person.hunger > 95:
+        person.hunger = 100
+    else:
+        person.hunger += 5
+
     if person.current_action == "walk_U" or person.current_action=="walk_D" or person.current_action == "walk_L" or person.current_action=="walk_R":
     	#Energy decreases
     	if person.energy < 5:
