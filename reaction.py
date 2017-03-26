@@ -65,7 +65,7 @@ def process_reactions(person):
     		person.energy -= 1
     elif person.current_action == "run_U" or person.current_action=="run_D" or person.current_action == "run_L" or person.current_action=="run_R":
     	#Energy decreases  
-        decrement = 250 / person.fitness
+        decrement = 250 / (person.fitness + 1)
     	if person.energy < decrement:
     		person.energy = 0
     	else:
