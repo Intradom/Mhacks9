@@ -45,7 +45,7 @@ def random_walk(p, e, o):
     return choice
 
 def search_obj(player, environment, fov, obj_name, final_action):
-    current_action = "nothing"
+    current_action = ""
 
     for fovIndex in range(len(fov)):
         if fov[fovIndex].name == obj_name:
@@ -72,6 +72,9 @@ def search_obj(player, environment, fov, obj_name, final_action):
             else:
                 current_action = final_action
                 
+    if current_action == ""
+        current_action = random_walk(player, environment, ["walk_L", "walk_R", "walk_U", "walk_D"])
+               
     return current_action
     
 def process_thoughts(player, environment):
@@ -101,7 +104,7 @@ def process_thoughts(player, environment):
     elif player.energy < constants.ENERGY_THRESHOLD: 
         player.current_action = "sleep"
         print("Want to sleep")
-    else: # Expore the world
+    else: # Explore the world
         player.current_action = random_walk(player, environment, ["walk_L", "walk_R", "walk_U", "walk_D"])
         print("Want to explore")
 
