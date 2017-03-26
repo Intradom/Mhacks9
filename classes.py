@@ -1,23 +1,32 @@
+import constants
 import sys
 
-import constants
 
+###############################################################################
 class Thing(object):
+    def __init__(self, name_in, resrouces_in, x_in, y_in):
+        self.name = name_in
+        self.resources = resrouces_in
+        self.x_coordinate = x_in
+        self.y_coordinate = y_in
 
-    def __init__(self, n, x, y, r):
-        self.name = n
-        self.x_coordinate = x
-        self.y_coordinate = y
-        self.resources = r
-        
-        def __str__(self):
-            return self.name + " " + self.x_coordinate + " " + self.y_coordinate + " " + self.resources
+    def __str__(self):
+        return self.name + " " + self.resources + " " + self.x_coordinate + " "
+        + self.y_coordinate
+
 
 class LivingThings(Thing):
+    def __init__(self, name_in, x_in, y_in, health_in):
+        super(LivingThings, self).__init__(name_in, x_in, y_in, 0)
+        self.health = health_in
 
-    def __init__(self, n, x, y, he):
-        super(LivingThings, self).__init__(n, x, y, 0)
-        self.health = he
+
+class Animal(LivingThings):
+    def __init__(self, name_in, x_in, y_in, agression_in):
+        super(Animal, self).__init__(name_in, x_in, y_in, 0)
+        self.aggression = agression_in
+###############################################################################
+
 
 class Player(LivingThings):
 
@@ -36,11 +45,11 @@ class Player(LivingThings):
         self.sobriety = s
         self.bladder = b
         self.dump = d
-        
+
         self.last_thought = ""
         self.current_action = ""
         self.action_counter = 0
-        
+
     def __str__(self):
         print("**********Player**********")
         print("Name: " + str(self.name))
@@ -67,39 +76,34 @@ class Player(LivingThings):
             print("\tCognitive map empty")
         else:
             for i in range(len(self.cognitive_map)):
-                print("\t" + cognitive_map[i])
+                print("\t" + self.cognitive_map[i])
         return "**********Player**********"
 
-class Animal(LivingThings):
 
-    def __init__(self, n, x, y, a):
-        super(Animal, self).__init__(n, x, y, 0)
-        self.aggression = a
-
+###############################################################################
 class Environment(object):
 
     def __init__(self):
-        w, h = constants.GRID_WIDTH, constants.GRID_HEIGHT;
-        self.global_map = [[0 for x in range(w)] for y in range(h)] 
+        width, height = constants.GRID_WIDTH, constants.GRID_HEIGHT
+
+        self.global_map = [[0 for x in range(width)] for y in range(height)]
         self.uses = []
         self.weather = "normal"
         self.day = 1
-        
-        # Initialize environment to be all grass tiles
+
+        # initialize environment to be all grass tiles
         for i in range(constants.GRID_WIDTH):
             for j in range(constants.GRID_HEIGHT):
-                self.global_map[i][j] = Thing("grass", i, j, 0)
-                
+                self.global_map[i][j] = Thing("grass", 0, i, j)
+
     def __str__(self):
         print("**********GRID**********\n")
-        for row in range(constants.GRID_HEIGHT):
-                for col in range(constants.GRID_WIDTH):
-                    sys.stdout.write(self.global_map[col][row].name + " ")
+        for y in range(constants.GRID_HEIGHT):
+            for x in range(constants.GRID_WIDTH):
+                sys.stdout.write(self.global_map[y][x].name + " ")
                 print("\n")
         return "**********GRID**********"
-        
-    def change_tile(self, x, y, new_name):
-        if new_name == "apple_tree":
-            self.global_map[x][y] = Thing(new_name, x, y, 10)
-        else:
-            self.global_map[x][y] = Thing(new_name, x, y, 0)
+
+    def change_tile(self, name_in, resources_in, x_in, y_in):
+        self.global_map[x_in][y_in] = Thing(name_in, x_in, y_in, resources_in)
+###############################################################################
