@@ -104,17 +104,3 @@ def process_thoughts(player, environment):
     #think about current thought
 
     #check field of view: make variable
-
-    #think about exploring
-
-
-
-
-
-
-
-
-    #think about eating
-    #think about drinking
-
-

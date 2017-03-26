@@ -3,8 +3,8 @@
 # Colors
 C_WHITE = (255, 255, 255)
 C_BLACK = (0, 0, 0)
-C_DARK_GREEN = (0, 102, 0)
-C_DARK_BLUE = (0, 0, 153)
+C_TREE = (0, 102, 0)
+C_WATER = (0, 0, 153)
 C_MEADOW_GREEN = (178, 255, 102)
 C_APPLE = (204, 0, 0)
 C_PLAYER = (102, 0, 204)
