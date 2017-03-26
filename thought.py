@@ -24,24 +24,24 @@ def random_walk(p, e, o):
     
     keep = False
     choice = options[random.randint(0, len(o) - 1)]
-    if choice == "walk_L":
+    if choice == "walk_L" or choice == "run_L":
         keep = p.x_coordinate - 1 >= 0 and e.global_map[p.x_coordinate - 1][p.y_coordinate].name == "grass"
-    elif choice == "walk_R":
+    elif choice == "walk_R" or choice == "run_R":
         keep = p.x_coordinate + 1 < constants.GRID_WIDTH and e.global_map[p.x_coordinate + 1][p.y_coordinate].name == "grass"
-    elif choice == "walk_U":
+    elif choice == "walk_U" or choice == "run_U":
         keep = p.y_coordinate - 1 >= 0 and e.global_map[p.x_coordinate][p.y_coordinate - 1].name == "grass"
-    elif choice == "walk_D":
+    elif choice == "walk_D" or choice == "run_D":
         keep = p.y_coordinate + 1 < constants.GRID_HEIGHT and e.global_map[p.x_coordinate][p.y_coordinate + 1].name == "grass"
         
     while not keep:
         choice = options[random.randint(0, len(o) - 1)]
-        if choice == "walk_L":
+        if choice == "walk_L" or choice == "run_L":
             keep = p.x_coordinate - 1 >= 0 and e.global_map[p.x_coordinate - 1][p.y_coordinate].name == "grass"
-        elif choice == "walk_R":
+        elif choice == "walk_R" or choice == "run_R":
             keep = p.x_coordinate + 1 < constants.GRID_WIDTH and e.global_map[p.x_coordinate + 1][p.y_coordinate].name == "grass"
-        elif choice == "walk_U":
+        elif choice == "walk_U" or choice == "run_U":
             keep = p.y_coordinate - 1 >= 0 and e.global_map[p.x_coordinate][p.y_coordinate - 1].name == "grass"
-        elif choice == "walk_D":
+        elif choice == "walk_D" or choice == "run_D":
             keep = p.y_coordinate + 1 < constants.GRID_HEIGHT and e.global_map[p.x_coordinate][p.y_coordinate + 1].name == "grass"
 
     return choice
@@ -51,7 +51,11 @@ def search_obj(player, environment, fov, obj_name, final_action):
 
     for fovIndex in range(len(fov)):
         if fov[fovIndex].name == obj_name:
-            if abs(fov[fovIndex].x_coordinate - player.x_coordinate) + abs(fov[fovIndex].y_coordinate - player.y_coordinate) <= 1:
+            distance = abs(fov[fovIndex].x_coordinate - player.x_coordinate) + abs(fov[fovIndex].y_coordinate - player.y_coordinate)
+            #print(distance)
+            #print((player.x_coordinate, player.y_coordinate))
+            #print((fov[fovIndex].x_coordinate, fov[fovIndex].y_coordinate))
+            if distance <= 1:
                 current_action = final_action
             elif fov[fovIndex].x_coordinate < player.x_coordinate - 1:
                 if player.x_coordinate - 1 >= 0 and environment.global_map[player.x_coordinate - 1][player.y_coordinate].name == "grass":
@@ -89,26 +93,26 @@ def process_thoughts(player, environment):
     	return
     player.action_counter = 0
         
+    # High intelligence means prioritising the more dire issues more, exponential weights
     drink_low = 0
-    drink_high = drink_low + math.exp(1.0 / player.intelligence * player.thirst)
+    drink_high = drink_low + math.exp(player.intelligence / 20.0) * player.thirst 
     eat_low = drink_high
-    eat_high = eat_low + math.exp(1.0 / player.intelligence * player.hunger)
+    eat_high = eat_low + math.exp(player.intelligence / 20.0) * player.hunger
     sleep_low = eat_high
-    sleep_high = sleep_low + math.exp(1.0 / player.intelligence * (100 - player.energy))
+    sleep_high = sleep_low + math.exp(player.intelligence / 50.0) * (100 - player.energy)
     explore_low = sleep_high
-    explore_high = explore_low + math.exp(1.0 / player.intelligence * player.energy) / (player.intelligence / 10.0)
+    explore_high = explore_low + math.exp(player.intelligence / 20.0) * player.energy / (player.intelligence / 10.0)
     dance_low = explore_high
-    dance_high = dance_low + math.exp(1.0 / player.intelligence * player.joy) / (player.intelligence / 10.0)
+    dance_high = dance_low + player.joy / (player.intelligence / 50.0)
     pushup_low = dance_high
-    pushup_high = pushup_low + math.exp(1.0 / player.intelligence * player.energy) / (player.intelligence / 10.0)
+    pushup_high = pushup_low + player.energy / (player.intelligence / 25.0)
     pee_low = pushup_high
-    pee_high = pee_low + math.exp(1.0 / player.intelligence * player.bladder)
+    pee_high = pee_low + math.exp(player.intelligence / 20.0) * player.bladder
     poo_low = pee_high
-    poo_high = poo_low + math.exp(1.0 / player.intelligence * player.dump)
+    poo_high = poo_low + math.exp(player.intelligence / 20.0) * player.dump
     donothing_low = poo_high
-    donothing_high = donothing_low + (100 - player.intelligence) * 5 + (100 - player.energy)
+    donothing_high = donothing_low + (100 - player.intelligence) + (100 - player.energy)
     
-    print(donothing_high)
     choice = random.randint(drink_low, int(donothing_high))
     
     if choice >= drink_low and choice < drink_high:

@@ -12,14 +12,15 @@ import reaction
 import draw
 
 def process_reactions(person):
+    #print("DEBUG: " + str(person.thirst))
     # Constant hunger
     if person.current_action != "eat":
-        if person.hunger > 99:
+        if person.hunger > 99.9:
             person.hunger = 100
             person.health -= 5
             print(person.name + " is very hungry")
         else:
-            person.hunger += 1
+            person.hunger += 0.1
             if person.hunger >= 50:
                 print(person.name + " is hungry")
                 
@@ -33,12 +34,12 @@ def process_reactions(person):
         
     # Constant thirst
     if person.current_action != "drink":
-        if person.thirst > 98:
+        if person.thirst > 99.8:
             person.thirst = 100
             person.health -= 5
             print(person.name + " is very thirsty")
         else:
-            person.thirst += 2
+            person.thirst += 0.2
             if person.thirst >= 50:
                 print(person.name + " is thirsty")
                 
@@ -50,14 +51,19 @@ def process_reactions(person):
                 if person.fitness == 25:
                     print(person.name + " is not happy")
 
+    if person.action_counter != 0:
+        person.action_counter += 1
+        return
+    #Increment action counter
+    person.action_counter += 1    
+        
     if person.current_action == "walk_U" or person.current_action=="walk_D" or person.current_action == "walk_L" or person.current_action=="walk_R":
     	#Energy decreases
     	if person.energy < 1:
     		person.energy = 0
     	else:
     		person.energy -= 1
-            
-    if person.current_action == "run_U" or person.current_action=="run_D" or person.current_action == "run_L" or person.current_action=="run_R":
+    elif person.current_action == "run_U" or person.current_action=="run_D" or person.current_action == "run_L" or person.current_action=="run_R":
     	#Energy decreases  
         decrement = 250 / person.fitness
     	if person.energy < decrement:
@@ -75,6 +81,11 @@ def process_reactions(person):
     elif person.current_action == "sleep":
         #Energy goes to max
         person.energy = 100
+        
+        if person.fitness < 10:
+        	person.fitness = 0
+        else:
+        	person.fitness -= 10 
 
     elif person.current_action == "eat":
         #Hunger decreases
@@ -93,10 +104,10 @@ def process_reactions(person):
 
     elif person.current_action == "drink":
         #Thirst decreases
-        if person.thirst < 10:
+        if person.thirst < 20:
         	person.thirst = 0
         else:
-        	person.thirst -= 10
+        	person.thirst -= 20
 
         #Bladder contents increase
         if person.bladder > 90:
@@ -108,10 +119,10 @@ def process_reactions(person):
                 
     elif person.current_action == "dance":
     
-        if person.energy < 10:
+        if person.energy < 5:
         	person.energy = 0
         else:
-        	person.energy -= 10
+        	person.energy -= 5
     
         if person.joy > 90:
     		person.joy = 100
@@ -122,10 +133,10 @@ def process_reactions(person):
                 
     elif person.current_action == "pushup":
     
-        if person.energy < 10:
+        if person.energy < 5:
         	person.energy = 0
         else:
-        	person.energy -= 10
+        	person.energy -= 5
     
         if person.fitness > 90:
     		person.fitness = 100

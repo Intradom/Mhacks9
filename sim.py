@@ -71,6 +71,9 @@ def main(args=None):
             if event.type == pygame.QUIT:
                 pygame.quit()
                 sys.exit()
+
+        if cycles % constants.CYCLES_IN_DAY == 0:
+            print("**********DAY %d**********" % int(cycles / constants.CYCLES_IN_DAY + 1))
                 
         # Updates the environment with random events and returns items to interest to the players
         environment.process_environment(env)
