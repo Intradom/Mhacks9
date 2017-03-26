@@ -39,7 +39,7 @@ def init():
             while env.global_map[loc_x][loc_y].name != "grass": # Keep searching for open tiles
                 loc_x = random.randint(0, constants.GRID_WIDTH - 1)
                 loc_y = random.randint(0, constants.GRID_HEIGHT - 1)
-            env.change_tile(loc_x, loc_y, e_name)
+            env.change_tile(e_name, env.global_map[loc_x][loc_y].resources, loc_x, loc_y)
                 
     # TODO: add in more players
     # Players init
@@ -54,9 +54,9 @@ def init():
                             constants.P_FEAR, constants.P_GRIEF, constants.P_JOY, \
                             constants.P_INTELLIGENCE, constants.P_SOBRIETY, constants.P_BLADDER, \
                             constants.P_DUMP)
-                                    
-    env.change_tile(player.x_coordinate, player.y_coordinate, player.name)                             
-                      
+
+    env.change_tile(player.name, 0, player.x_coordinate, player.y_coordinate)
+
     return screen, env, player
 
 def main(args=None):
@@ -71,7 +71,7 @@ def main(args=None):
         
         # TODO: Make loop that iterates these functions for each character alive
         # Updates the environment with random events and returns items to interest to the players
-        environment.process_environment()
+        environment.process_environment(env)
         
         # Based on previous thoughts, mental states, and the new environment; generate actions plan
         thought.process_thoughts(player, env)
