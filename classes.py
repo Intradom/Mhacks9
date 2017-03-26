@@ -11,8 +11,8 @@ class Thing(object):
         self.y_coordinate = y_in
 
     def __str__(self):
-        return self.name + " " + self.resources + " " + self.x_coordinate + " "
-        + self.y_coordinate
+        return self.name + " " + str(self.resources) + " " + \
+            str(self.x_coordinate) + " " + str(self.y_coordinate)
 
 
 class LivingThings(Thing):
@@ -105,5 +105,7 @@ class Environment(object):
         return "**********GRID**********"
 
     def change_tile(self, name_in, resources_in, x_in, y_in):
+        if name_in == "apple_tree":
+            resources_in = 10
         self.global_map[x_in][y_in] = Thing(name_in, resources_in, x_in, y_in)
 ###############################################################################
