@@ -20,7 +20,7 @@ def random_walk(p, e, o):
     for i in range(len(o)):
         options[i] = o[i]
     
-    keep = True
+    keep = False
     choice = options[random.randint(0, len(o) - 1)]
     if choice == "walk_L":
         keep = p.x_coordinate - 1 >= 0 and e.global_map[p.x_coordinate - 1][p.y_coordinate].name == "grass"
