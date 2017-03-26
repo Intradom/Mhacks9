@@ -23,24 +23,24 @@ def random_walk(p, e, o):
     keep = True
     choice = options[random.randint(0, len(o) - 1)]
     if choice == "walk_L":
-        keep = e.global_map[p.x_coordinate - 1][p.y_coordinate].name == "grass"
+        keep = p.x_coordinate - 1 >= 0 and e.global_map[p.x_coordinate - 1][p.y_coordinate].name == "grass"
     elif choice == "walk_R":
-        keep = e.global_map[p.x_coordinate + 1][p.y_coordinate].name == "grass"
+        keep = p.x_coordinate + 1 < constants.GRID_WIDTH and e.global_map[p.x_coordinate + 1][p.y_coordinate].name == "grass"
     elif choice == "walk_U":
-        keep = e.global_map[p.x_coordinate][p.y_coordinate - 1].name == "grass"
+        keep = p.y_coordinate - 1 >= 0 and e.global_map[p.x_coordinate][p.y_coordinate - 1].name == "grass"
     elif choice == "walk_D":
-        keep = e.global_map[p.x_coordinate][p.y_coordinate + 1].name == "grass"
+        keep = p.y_coordinate + 1 < constants.GRID_HEIGHT and e.global_map[p.x_coordinate][p.y_coordinate + 1].name == "grass"
         
     while not keep:
         choice = options[random.randint(0, len(o) - 1)]
         if choice == "walk_L":
-            keep = e.global_map[p.x_coordinate - 1][p.y_coordinate].name == "grass"
+            keep = p.x_coordinate - 1 >= 0 and e.global_map[p.x_coordinate - 1][p.y_coordinate].name == "grass"
         elif choice == "walk_R":
-            keep = e.global_map[p.x_coordinate + 1][p.y_coordinate].name == "grass"
+            keep = p.x_coordinate + 1 < constants.GRID_WIDTH and e.global_map[p.x_coordinate + 1][p.y_coordinate].name == "grass"
         elif choice == "walk_U":
-            keep = e.global_map[p.x_coordinate][p.y_coordinate - 1].name == "grass"
+            keep = p.y_coordinate - 1 >= 0 and e.global_map[p.x_coordinate][p.y_coordinate - 1].name == "grass"
         elif choice == "walk_D":
-            keep = e.global_map[p.x_coordinate][p.y_coordinate + 1].name == "grass"
+            keep = p.y_coordinate + 1 < constants.GRID_HEIGHT and e.global_map[p.x_coordinate][p.y_coordinate + 1].name == "grass"
 
     return choice
 
@@ -50,25 +50,25 @@ def search_obj(player, environment, fov, obj_name, final_action):
     for fovIndex in range(len(fov)):
         if fov[fovIndex].name == obj_name:
             if fov[fovIndex].x_coordinate < player.x_coordinate - 1:
-                if environment.global_map[player.x_coordinate - 1][player.y_coordinate].name != "grass":
-                    current_action = random_walk(player, environment, ["walk_R", "walk_U", "walk_D"])
-                else:
+                if player.x_coordinate - 1 >= 0 and environment.global_map[player.x_coordinate - 1][player.y_coordinate].name == "grass":
                     current_action = "walk_L"
+                else:
+                    current_action = random_walk(player, environment, ["walk_R", "walk_U", "walk_D"])
             elif fov[fovIndex].x_coordinate > player.x_coordinate + 1:
-                if environment.global_map[player.x_coordinate + 1][player.y_coordinate].name != "grass":
+                if player.x_coordinate + 1 < constants.GRID_WIDTH and environment.global_map[player.x_coordinate + 1][player.y_coordinate].name == "grass":
+                    current_action = "walk_R"
+                else:
                     current_action = random_walk(player, environment, ["walk_L", "walk_U", "walk_D"])
-                else:
-                    current_action = "walk_R"				
             elif fov[fovIndex].y_coordinate < player.y_coordinate - 1:
-                if environment.global_map[player.x_coordinate][player.y_coordinate - 1].name != "grass":
-                    current_action = random_walk(player, environment, ["walk_L", "walk_R", "walk_D"])
+                if player.y_coordinate - 1 >= 0 and environment.global_map[player.x_coordinate][player.y_coordinate - 1].name == "grass":
+                    current_action = "walk_U"
                 else:
-                    current_action = "walk_U"				
+                    current_action = random_walk(player, environment, ["walk_L", "walk_R", "walk_D"])				
             elif fov[fovIndex].y_coordinate > player.y_coordinate + 1:
-                if environment.global_map[player.x_coordinate][player.y_coordinate + 1].name != "grass":
-                    current_action = random_walk(player, environment, ["walk_L", "walk_R", "walk_U"])
+                if player.y_coordinate + 1 < constants.GRID_HEIGHT and environment.global_map[player.x_coordinate][player.y_coordinate + 1].name == "grass":
+                    current_action = "walk_D"
                 else:
-                    current_action = "walk_D"				
+                    current_action = random_walk(player, environment, ["walk_L", "walk_R", "walk_U"])			
             else:
                 current_action = final_action
                 
