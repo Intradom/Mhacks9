@@ -14,8 +14,8 @@ import draw
 def init():
     # Gather user input before launching
     p_name = raw_input("Player name: ")
-    p_intelligence = input(p_name + "'s intelligence (0-100, enter > 100 to use default): ")
-    if p_intelligence > 100:
+    p_intelligence = input(p_name + "'s intelligence (1-100, any other values to use default (%d)): " % P_INTELLIGENCE)
+    if p_intelligence < 1 or p_intelligence > 100:
         p_intelligence = P_INTELLIGENCE
 
     # Pygame init
