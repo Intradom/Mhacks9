@@ -39,6 +39,10 @@ E_NUM_REG_TREES = 20
 E_NUM_APPLE_TREES = 10
 E_NUM_WATER_SPOTS = 10
 
+# Environmental Feature Attributes
+E_TREE_APPLE_MIN = 5
+E_TREE_APPLE_MAX = 20
+
 # Player Initial Stats
 P_HEALTH = 100
 P_HUNGER = 0

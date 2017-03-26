@@ -8,11 +8,11 @@ import action
 def field_of_view(e, p_x, p_y, r):
     notable_objects = []
     
-    for y in range(-r, r + 1):
-        for x in range(-r, r + 1):
+    for x in range(-r, r + 1):
+        for y in range(-r, r + 1):
             if (p_x + x >= 0) and (p_x + x < constants.GRID_WIDTH) and (p_y + y >= 0) and (p_y + y < constants.GRID_HEIGHT):
-                if e.global_map[p_y + y][p_x + x].name != "grass":
-                    notable_objects.append(e.global_map[p_y + y][p_x + x])
+                if e.global_map[p_x + x][p_y + y].name != "grass":
+                    notable_objects.append(e.global_map[p_x + x][p_y + y])
     
     return notable_objects
 
@@ -51,7 +51,6 @@ def search_obj(player, environment, fov, obj_name, final_action):
     print("searching")
     for fovIndex in range(len(fov)):
         if fov[fovIndex].name == obj_name:
-            print("apple tree in range")
             if abs(fov[fovIndex].x_coordinate - player.x_coordinate) + abs(fov[fovIndex].y_coordinate - player.y_coordinate) <= 1:
                 current_action = final_action
             elif fov[fovIndex].x_coordinate < player.x_coordinate - 1:

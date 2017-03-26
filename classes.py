@@ -1,6 +1,7 @@
-import constants
 import sys
+import random
 
+import constants
 
 ###############################################################################
 class Thing(object):
@@ -106,6 +107,6 @@ class Environment(object):
 
     def change_tile(self, name_in, resources_in, x_in, y_in):
         if name_in == "apple_tree":
-            resources_in = 10
+            resources_in = random.randint(constants.E_TREE_APPLE_MIN, constants.E_TREE_APPLE_MAX)
         self.global_map[x_in][y_in] = Thing(name_in, resources_in, x_in, y_in)
 ###############################################################################
