@@ -29,6 +29,11 @@ def find_food(person, environment):
 
 
 def process_actions(person, environment):
+    
+    if person.action_counter != 0:
+        person.action_counter += 1
+        return
+        
     #Increment action counter
     person.action_counter += 1
 
