@@ -1,13 +1,13 @@
 # List of constants used in the simulation
 
 # Colors
-C_WHITE = (255, 255, 255)
+C_APPLE = (204, 0, 0)
 C_BLACK = (0, 0, 0)
+C_GRASS = (178, 255, 102)
+C_PLAYER = (102, 0, 204)
 C_TREE = (0, 102, 0)
 C_WATER = (0, 0, 153)
-C_MEADOW_GREEN = (178, 255, 102)
-C_APPLE = (204, 0, 0)
-C_PLAYER = (102, 0, 204)
+C_WHITE = (255, 255, 255)
 
 # Grid Info
 GRID_WIDTH = 25
