@@ -33,7 +33,7 @@ def process_actions(person, environment):
     if person.action_counter != 0:
         person.action_counter += 1
         return
-        
+
     #Increment action counter
     person.action_counter += 1
 
@@ -46,10 +46,10 @@ def process_actions(person, environment):
         environment.global_map[x][y] = classes.Thing("grass", x, y, 0)
 
         #Move up
-        person.y_coordinate += 1
+        person.y_coordinate -= 1
 
         #Set new location
-        environment.global_map[x][y+1] = person
+        environment.global_map[x][y-1] = person
 
     elif person.current_action == "walk_D":
 
@@ -57,10 +57,10 @@ def process_actions(person, environment):
         environment.global_map[x][y] = classes.Thing("grass", x, y, 0)
 
         #Move down
-        person.y_coordinate -= 1
+        person.y_coordinate += 1
 
         #Set new location
-        environment.global_map[x][y-1] = person
+        environment.global_map[x][y+1] = person
 
     elif person.current_action == "walk_L":
 
