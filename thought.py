@@ -7,13 +7,14 @@ import action
 
 def field_of_view(e, p_x, p_y, r):
     notable_objects = []
-    for y in range(-r, r):
-        for x in range(-r, r):
+    
+    for y in range(-r, r + 1):
+        for x in range(-r, r + 1):
             if (p_x + x >= 0) and (p_x + x < constants.GRID_WIDTH) and (p_y + y >= 0) and (p_y + y < constants.GRID_HEIGHT):
                 if e.global_map[p_y + y][p_x + x].name != "grass":
                     notable_objects.append(e.global_map[p_y + y][p_x + x])
-
-	return notable_objects
+    
+    return notable_objects
 
 def random_walk(p, e, o):
     options = {}
@@ -47,9 +48,13 @@ def random_walk(p, e, o):
 def search_obj(player, environment, fov, obj_name, final_action):
     current_action = ""
 
+    print("searching")
     for fovIndex in range(len(fov)):
         if fov[fovIndex].name == obj_name:
-            if fov[fovIndex].x_coordinate < player.x_coordinate - 1:
+            print("apple tree in range")
+            if abs(fov[fovIndex].x_coordinate - player.x_coordinate) + abs(fov[fovIndex].y_coordinate - player.y_coordinate) <= 1:
+                current_action = final_action
+            elif fov[fovIndex].x_coordinate < player.x_coordinate - 1:
                 if player.x_coordinate - 1 >= 0 and environment.global_map[player.x_coordinate - 1][player.y_coordinate].name == "grass":
                     current_action = "walk_L"
                 else:
@@ -69,8 +74,6 @@ def search_obj(player, environment, fov, obj_name, final_action):
                     current_action = "walk_D"
                 else:
                     current_action = random_walk(player, environment, ["walk_L", "walk_R", "walk_U"])			
-            else:
-                current_action = final_action
                 
     if current_action == "":
         current_action = random_walk(player, environment, ["walk_L", "walk_R", "walk_U", "walk_D"])
@@ -81,7 +84,6 @@ def process_thoughts(player, environment):
     
     fov = []
     fov = field_of_view(environment, player.x_coordinate, player.y_coordinate, constants.FOV_RADIUS)
-
     
     if player.current_action != "" and player.action_counter < constants.ACTION_TIME[player.current_action]:
     	return

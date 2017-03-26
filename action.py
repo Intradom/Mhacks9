@@ -17,7 +17,7 @@ def find_food(x, y, person, environment):
         if environment.global_map[x-1][y].name == "apple_tree":
             return "left"
     #Check right
-    if person.x_coordinate != (GRID_WIDTH - 1):
+    if person.x_coordinate != (constants.GRID_WIDTH - 1):
         if environment.global_map[x+1][y].name == "apple_tree":
             return "right"
     #Check up
