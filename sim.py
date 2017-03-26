@@ -93,7 +93,7 @@ def main(args=None):
         cycles += 1 # TODO: Add check for when cycles overflows 
         pygame.time.delay(constants.CYCLE_DELAY)
          
-    print(player.name + " has died")
+    print(player.name + " has died, survived for %d days" % (cycles / constants.CYCLES_IN_DAY))
     pygame.quit()
 
 if __name__ == "__main__":

@@ -16,7 +16,7 @@ GRID_HEIGHT = 25
 # Screen Info
 SCREEN_WIDTH = 640          # Pixels
 SCREEN_HEIGHT = 480         # Pixels
-CYCLE_DELAY = 100          # Delay in milliseconds
+CYCLE_DELAY = 10            # Delay in milliseconds
 
 # draw.py
 BOX_WIDTH_SCREEN = SCREEN_WIDTH / GRID_WIDTH

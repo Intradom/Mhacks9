@@ -57,26 +57,24 @@ def search_obj(player, environment, fov, obj_name, final_action):
             #print((fov[fovIndex].x_coordinate, fov[fovIndex].y_coordinate))
             if distance <= 1:
                 current_action = final_action
-            elif fov[fovIndex].x_coordinate < player.x_coordinate - 1:
+                
+            if current_action == "" and fov[fovIndex].x_coordinate < player.x_coordinate - 1:
                 if player.x_coordinate - 1 >= 0 and environment.global_map[player.x_coordinate - 1][player.y_coordinate].name == "grass":
                     current_action = "walk_L"
-                else:
-                    current_action = random_walk(player, environment, ["walk_R", "walk_U", "walk_D"])
-            elif fov[fovIndex].x_coordinate > player.x_coordinate + 1:
+            if current_action == "" and fov[fovIndex].x_coordinate > player.x_coordinate + 1:
                 if player.x_coordinate + 1 < constants.GRID_WIDTH and environment.global_map[player.x_coordinate + 1][player.y_coordinate].name == "grass":
                     current_action = "walk_R"
-                else:
-                    current_action = random_walk(player, environment, ["walk_L", "walk_U", "walk_D"])
-            elif fov[fovIndex].y_coordinate < player.y_coordinate - 1:
+            if current_action == "" and fov[fovIndex].y_coordinate < player.y_coordinate - 1:
                 if player.y_coordinate - 1 >= 0 and environment.global_map[player.x_coordinate][player.y_coordinate - 1].name == "grass":
-                    current_action = "walk_U"
-                else:
-                    current_action = random_walk(player, environment, ["walk_L", "walk_R", "walk_D"])				
-            elif fov[fovIndex].y_coordinate > player.y_coordinate + 1:
+                    current_action = "walk_U"			
+            if current_action == "" and fov[fovIndex].y_coordinate > player.y_coordinate + 1:
                 if player.y_coordinate + 1 < constants.GRID_HEIGHT and environment.global_map[player.x_coordinate][player.y_coordinate + 1].name == "grass":
                     current_action = "walk_D"
-                else:
-                    current_action = random_walk(player, environment, ["walk_L", "walk_R", "walk_U"])
+            
+            # If best direction to go not found
+            if current_action == "":
+                current_action = random_walk(player, environment, ["walk_L", "walk_R", "walk_U", "walk_D"])
+                
             continue
                 
     if current_action == "":
