@@ -56,7 +56,7 @@ def init():
                             constants.P_DUMP)
                                     
     env.change_tile(player.x_coordinate, player.y_coordinate, player.name)                             
-           
+                      
     return screen, env, player
 
 def main(args=None):
