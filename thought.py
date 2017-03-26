@@ -83,6 +83,8 @@ def process_thoughts(player, environment):
     if player.current_action != "" and player.action_counter < constants.ACTION_TIME[player.current_action]:
     	return
         
+    player.action_counter = 0
+        
     if player.hunger > constants.HUNGER_THRESHOLD:
         # for invIndex in player.inventory:
         # 	if player.inventory[invIndex].is_edible():
