@@ -14,6 +14,9 @@ import draw
 def init():
     # Gather user input before launching
     p_name = raw_input("Player name: ")
+    p_intelligence = input(p_name + "'s intelligence (0-100, enter > 100 to use default): ")
+    if p_intelligence > 100:
+        p_intelligence = P_INTELLIGENCE
 
     # Pygame init
     pygame.init()
@@ -39,7 +42,7 @@ def init():
             while env.global_map[loc_x][loc_y].name != "grass": # Keep searching for open tiles
                 loc_x = random.randint(0, constants.GRID_WIDTH - 1)
                 loc_y = random.randint(0, constants.GRID_HEIGHT - 1)
-            env.change_tile(e_name, env.global_map[loc_x][loc_y].resources, loc_x, loc_y)
+            env.change_tile(e_name, 0, loc_x, loc_y)
                 
     # TODO: add in more players
     # Players init
@@ -52,7 +55,7 @@ def init():
                             constants.P_HEALTH, constants.P_HUNGER, constants.P_THIRST, \
                             constants.P_ENERGY, constants.P_FITNESS, constants.P_ANGER, \
                             constants.P_FEAR, constants.P_GRIEF, constants.P_JOY, \
-                            constants.P_INTELLIGENCE, constants.P_SOBRIETY, constants.P_BLADDER, \
+                            p_intelligence, constants.P_SOBRIETY, constants.P_BLADDER, \
                             constants.P_DUMP)
 
     env.change_tile(player.name, 0, player.x_coordinate, player.y_coordinate)
@@ -68,7 +71,7 @@ def main(args=None):
             if event.type == pygame.QUIT:
                 pygame.quit()
                 sys.exit()
-        
+                
         # TODO: Make loop that iterates these functions for each character alive
         # Updates the environment with random events and returns items to interest to the players
         environment.process_environment(env)

@@ -12,17 +12,32 @@ import reaction
 import draw
 
 def process_reactions(person):
-    if person.hunger > 95:
-        person.hunger = 100
-    else:
-        person.hunger += 5
+    # Constant hunger
+    if person.current_action != "eat":
+        if person.hunger > 95:
+            person.hunger = 100
+            print(person.name + " is very hungry")
+        else:
+            person.hunger += 5
+            if person.hunger >= 50:
+                print(person.name + " is hungry")
+        
+    # Constant thirst
+    if person.current_action != "drink":
+        if person.thirst > 95:
+            person.thirst = 100
+            print(person.name + " is very thirsty")
+        else:
+            person.thirst += 5
+            if person.thirst >= 50:
+                print(person.name + " is thirsty")
 
     if person.current_action == "walk_U" or person.current_action=="walk_D" or person.current_action == "walk_L" or person.current_action=="walk_R":
     	#Energy decreases
-    	if person.energy < 5:
+    	if person.energy < 1:
     		person.energy = 0
     	else:
-    		person.energy -= 5
+    		person.energy -= 1
 
     elif person.current_action == "sleep":
         #Energy increases

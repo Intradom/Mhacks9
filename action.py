@@ -40,7 +40,7 @@ def process_actions(person, environment):
     x = person.x_coordinate
     y = person.y_coordinate
 
-    if person.current_action == "walk_U":
+    if person.current_action == "walk_U" || person.current_action == "run_U":
 
         #Reset current location to grass
         environment.global_map[x][y] = classes.Thing("grass", x, y, 0)
@@ -51,9 +51,12 @@ def process_actions(person, environment):
         #Set new location
         environment.global_map[x][y-1] = person
         
-        print("Walked up")
+        if person.current_action == "walk_U":
+            print("\t" + person.name + " walked upwards")
+        else:
+            print("\t" + person.name + " ran upwards")
 
-    elif person.current_action == "walk_D":
+    elif person.current_action == "walk_D" || person.current_action == "run_D":
 
         #Reset current location to grass
         environment.global_map[x][y] = classes.Thing("grass", x, y, 0)
@@ -64,9 +67,11 @@ def process_actions(person, environment):
         #Set new location
         environment.global_map[x][y+1] = person
         
-        print("Walked down")
-
-    elif person.current_action == "walk_L":
+        if person.current_action == "walk_D":
+            print("\t" + person.name + " walked downwards")
+        else:
+            print("\t" + person.name + " ran downwards")
+    elif person.current_action == "walk_L" || person.current_action == "run_L":
 
         #Reset current location to grass
         environment.global_map[x][y] = classes.Thing("grass", x, y, 0)
@@ -77,9 +82,11 @@ def process_actions(person, environment):
         #Set new location
         environment.global_map[x-1][y] = person
         
-        print("Walked left")
-
-    elif person.current_action == "walk_R":
+        if person.current_action == "walk_L":
+            print("\t" + person.name + " walked to the left")
+        else:
+            print("\t" + person.name + " ran to the left")
+    elif person.current_action == "walk_R" || person.current_action == "run_R":
 
         #Reset current location to grass
         environment.global_map[x][y] = classes.Thing("grass", x, y, 0)
@@ -90,10 +97,12 @@ def process_actions(person, environment):
         #Set new location
         environment.global_map[x+1][y] = person
         
-        print("Walked right")
-
+        if person.current_action == "walk_R":
+            print("\t" + person.name + " walked to the right")
+        else:
+            print("\t" + person.name + " ran to the right")
     elif person.current_action == "sleep":
-        print("Sleep")
+        print("\t" + person.name + " slept")
 
     elif person.current_action == "eat":
         #Get location of food
@@ -106,7 +115,7 @@ def process_actions(person, environment):
             environment.global_map[x][y+1].resources -= 1
         else:
             environment.global_map[x][y-1].resources -= 1
-        print("Ate")
+        print("\t" + person.name + " ate")
 
     elif person.current_action == "drink":
-        print("Drank")
+        print("\t" + person.name + " drank")
