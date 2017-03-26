@@ -50,6 +50,8 @@ def process_actions(person, environment):
 
         #Set new location
         environment.global_map[x][y-1] = person
+        
+        print("Walked up")
 
     elif person.current_action == "walk_D":
 
@@ -61,6 +63,8 @@ def process_actions(person, environment):
 
         #Set new location
         environment.global_map[x][y+1] = person
+        
+        print("Walked down")
 
     elif person.current_action == "walk_L":
 
@@ -72,6 +76,8 @@ def process_actions(person, environment):
 
         #Set new location
         environment.global_map[x-1][y] = person
+        
+        print("Walked left")
 
     elif person.current_action == "walk_R":
 
@@ -83,9 +89,11 @@ def process_actions(person, environment):
 
         #Set new location
         environment.global_map[x+1][y] = person
+        
+        print("Walked right")
 
     elif person.current_action == "sleep":
-        pass
+        print("Sleep")
 
     elif person.current_action == "eat":
         #Get location of food
@@ -98,6 +106,7 @@ def process_actions(person, environment):
             environment.global_map[x][y+1].resources -= 1
         else:
             environment.global_map[x][y-1].resources -= 1
+        print("Ate")
 
     elif person.current_action == "drink":
-        pass
+        print("Drank")

@@ -72,7 +72,7 @@ def search_obj(player, environment, fov, obj_name, final_action):
             else:
                 current_action = final_action
                 
-    if current_action == ""
+    if current_action == "":
         current_action = random_walk(player, environment, ["walk_L", "walk_R", "walk_U", "walk_D"])
                
     return current_action
